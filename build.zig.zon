@@ -1,0 +1,7 @@
+.{
+    .name = .huen_shot,
+    .version = "0.1.0",
+    .fingerprint = 0x3e72aa33ff2ed81d,
+    .minimum_zig_version = "0.17.1",
+    .paths = .{ "build.zig", "build.zig.zon", "src", "LICENSE", "README.md" },
+}

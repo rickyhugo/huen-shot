@@ -1,0 +1,25 @@
+[tools]
+zig = "0.17.1"
+hk = "2.9.0"
+pkl = "0.32.2"
+lua = "5.5.1"
+
+[tasks.build]
+description = "Build huen-shot"
+run = "zig build"
+
+[tasks.install]
+description = "Build a release binary and install it in ~/.local/bin"
+run = 'zig build -Doptimize=ReleaseSmall --prefix "$HOME/.local"'
+
+[tasks.test]
+description = "Run the tests"
+run = "zig build test"
+
+[tasks.check]
+description = "Check authored source formatting, names, and Lua syntax"
+run = "hk check --all"
+
+[tasks.fmt]
+description = "Format authored Zig sources and check names"
+run = "hk fix --all"
