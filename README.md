@@ -6,10 +6,12 @@ huen-shot has no GUI of its own. It runs the `screencapture` tool that ships wit
 
 ## Install
 
-Build with Zig 0.17, then copy the binary to a directory on your `PATH`.
+huen-shot builds with Zig 0.17.1. [mise](https://mise.jdx.dev) installs the pinned toolchain. Build, then copy the binary to a directory on your `PATH`.
 
 ```sh
-zig build -Doptimize=ReleaseSmall
+mise trust
+mise install
+mise exec -- zig build -Doptimize=ReleaseSmall
 cp zig-out/bin/huen-shot ~/.local/bin/
 ```
 
@@ -42,6 +44,20 @@ The config parser reads a subset of TOML: comments and the `save_dir` string. Wr
 
 ## Develop
 
+Tool versions and tasks are in `mise.toml`. Hook commands are in `hk.pkl`.
+
 ```sh
-zig build test
+mise run build
+mise run test
+mise run check
 ```
+
+`mise run check` checks Zig formatting, Lua syntax, and source names. The name check rejects single-letter identifiers. `mise run fmt` also formats the Zig files.
+
+Install the pre-commit and commit-msg hooks once. Linked worktrees share them.
+
+```sh
+mise exec -- hk install --mise
+```
+
+The pre-commit hook runs the same checks on staged files. The commit-msg hook requires a Conventional Commit title, such as `fix: handle empty input`.
