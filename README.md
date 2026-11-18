@@ -6,13 +6,12 @@ huen-shot has no GUI of its own. It runs the `screencapture` tool that ships wit
 
 ## Install
 
-huen-shot builds with Zig 0.17.1. [mise](https://mise.jdx.dev) installs the pinned toolchain. Build, then copy the binary to a directory on your `PATH`.
+[mise](https://mise.jdx.dev) installs the pinned toolchain, which includes Zig 0.17.1. The `install` task builds a release binary and puts it in `~/.local/bin`.
 
 ```sh
 mise trust
 mise install
-mise exec -- zig build -Doptimize=ReleaseSmall
-cp zig-out/bin/huen-shot ~/.local/bin/
+mise run install
 ```
 
 ## Take a screenshot
